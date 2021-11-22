@@ -1,7 +1,7 @@
 name: mason_from
 description: >
   A Dart template generator which helps teams generate brick from bundlebundle.
-version: 0.0.1+1
+version: 0.0.1-dev.1
 homepage:  https://github.com/huang12zheng/mason_from
 repository: https://github.com/huang12zheng/mason_from
 

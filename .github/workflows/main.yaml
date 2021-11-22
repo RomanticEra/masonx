@@ -1,3 +1,4 @@
+name: build
 on:
   pull_request:
     paths:
@@ -25,7 +26,9 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: Install Dependencies
-        run: pub get
+        run: |
+          pub get
+          dart pub global activate test_coverage
 
       - name: Format
         run: dart format --set-exit-if-changed lib
@@ -34,10 +37,11 @@ jobs:
         run: dart analyze --fatal-infos --fatal-warnings .
 
       - name: Ensure Build
-        run: dart test --run-skipped -t pull-request-only
+        run: dart test
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        # uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+        run: test_coverage
   build:
     needs: setup
 
@@ -52,7 +56,9 @@ jobs:
       - uses: dart-lang/setup-dart@v1
 
       - name: Install Dependencies
-        run: dart pub get
+        run: |
+          dart pub get
+          dart pub global activate coverage
 
       - name: Run Tests
         run: dart test -j 1 -x pull-request-only --coverage=coverage && pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib

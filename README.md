@@ -9,7 +9,7 @@
 
 A mason switch tool created by HZ.
 
-you can get a [$brick$](https://github.**com**/felangel/mason) from $bundle$( json file )
+you can get a [brick](https://github.**com**/felangel/mason) from `bundle`( json file )
 
 ## Running Tests 🧪
 
@@ -44,7 +44,9 @@ mason_from create -b example/core.json output
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
-[actions_badge]: https://github.com/huang12zheng/mason_from/actions/workflows/main/badge.svg
+[actions_badge]: https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml/badge.svg
 [actions_link]: https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml
 [pub_badge]:https://img.shields.io/pub/v/mason_from.svg
 [pub_link]:https://pub.dartlang.org/packages/mason_from
+
+[![.github/workflows/main.yaml](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml/badge.svg)](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml)

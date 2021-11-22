@@ -6,6 +6,7 @@
 doc/
 build/
 pubspec.lock
-converage/
+coverage/
 test/.*
 example/__brick__
+coverage_badge.svg

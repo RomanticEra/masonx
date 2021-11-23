@@ -21,7 +21,21 @@ class FileProxy {
 
 /// Extension
 extension FromGenerator on MasonGenerator {
-  /// override [generate]
+  /// override [generate] for [hooks]
+  Future<int> generateHooks(DirectoryGeneratorTarget target) async {
+    final nfiles = [
+      if (hooks.preGen != null)
+        FileProxy(hooks.preGen!.path, hooks.preGen!.content),
+      if (hooks.postGen != null)
+        FileProxy(hooks.postGen!.path, hooks.postGen!.content)
+    ];
+    await Future.forEach<FileProxy>(nfiles, (file) async {
+      await target.createFile(file.path, file.content);
+    });
+    return files.length;
+  }
+
+  /// override [generate] for [files]
   Future<int> generateBricks(DirectoryGeneratorTarget target) async {
     final nfiles = files.map((e) => FileProxy(e.path, e.content));
     await Future.forEach<FileProxy>(nfiles, (file) async {
@@ -73,6 +87,7 @@ class CreateCommand extends Command<int> {
       final brickYamlFile =
           File([_outputPath, projectName, 'brick.yaml'].join('/'));
       await brickYamlFile.create(recursive: true);
+
       brickYamlFile.writeAsStringSync(
         json2yaml(
           bundle.toJson()
@@ -85,7 +100,9 @@ class CreateCommand extends Command<int> {
 
       final fileCount = await generator
           .generateBricks(DirectoryGeneratorTarget(projectDirectory, Logger()));
-      return fileCount;
+      final hookCount = await generator
+          .generateHooks(DirectoryGeneratorTarget(hookDirectory, Logger()));
+      return fileCount + hookCount;
     } catch (e) {
       throw UsageException(
         'Example: mason_from create -b example/core.json .',
@@ -102,6 +119,11 @@ class CreateCommand extends Command<int> {
   /// where is __brick__ at. Example: [_outputPath]/brick_factory/__brick__
   Directory get projectDirectory {
     return Directory([_outputPath, projectName, '__brick__'].join('/'));
+  }
+
+  /// where is __brick__ at. Example: [_outputPath]/brick_factory/hooks
+  Directory get hookDirectory {
+    return Directory([_outputPath, projectName, 'hooks'].join('/'));
   }
 
   /// Get bundlePath

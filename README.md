@@ -1,10 +1,6 @@
 # mason_from
 
-[![masion_from][actions_badge]][actions_link]
-<!-- [![coverage][coverage_badge]] -->
-[![pub package][pub_badge]][pub_link]
-<!-- [![coverage][coverage_badge]](coverage/report/index.html) -->
-[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
+[![masion_from][actions_badge]][actions_link]  [![pub package][pub_badge]][pub_link] [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
 A mason switch tool created by HZ.
@@ -48,7 +44,3 @@ mason_from create -b example/core.json output
 [actions_link]: https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml
 [pub_badge]:https://img.shields.io/pub/v/mason_from.svg
 [pub_link]:https://pub.dartlang.org/packages/mason_from
-
-[![.github/workflows/main.yaml](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml/badge.svg)](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml)
-
-https://raw.githubusercontent.com/huang12zheng/mason_from/main/coverage_badge.svg?sanitize=true

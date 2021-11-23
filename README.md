@@ -1,7 +1,7 @@
 # mason_from
 
 [![masion_from][actions_badge]][actions_link]
-![coverage][coverage_badge]
+<!-- [![coverage][coverage_badge]] -->
 [![pub package][pub_badge]][pub_link]
 <!-- [![coverage][coverage_badge]](coverage/report/index.html) -->
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -39,7 +39,7 @@ mason_from create -b example/core.json output
 
 <!-- [coverage_link]: coverage/report/index.html -->
 <!-- [coverage_badge]: coverage_badge.svg -->
-[coverage_badge]: https://raw.githubusercontent.com/huang12zheng/mason_from/master/coverage_badge.svg
+[coverage_badge]: https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml/coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
@@ -50,3 +50,5 @@ mason_from create -b example/core.json output
 [pub_link]:https://pub.dartlang.org/packages/mason_from
 
 [![.github/workflows/main.yaml](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml/badge.svg)](https://github.com/huang12zheng/mason_from/actions/workflows/main.yaml)
+
+https://raw.githubusercontent.com/huang12zheng/mason_from/main/coverage_badge.svg?sanitize=true

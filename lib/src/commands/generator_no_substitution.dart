@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:fhir_yaml/fhir_yaml.dart';
 import 'package:mason/mason.dart';
+import 'package:path/path.dart';
 import 'package:universal_io/io.dart';
 
 /// A Proxy for TemplateFile
@@ -67,8 +69,22 @@ class CreateCommand extends Command<int> {
       final bundle = await FromGenerator.getBundle(bundlePath);
       final generator = await MasonGenerator.fromBundle(bundle);
 
+      // handle brick.yaml gen
+      final brickYamlFile =
+          File([_outputPath, projectName, 'brick.yaml'].join('/'));
+      await brickYamlFile.create(recursive: true);
+      brickYamlFile.writeAsStringSync(
+        json2yaml(
+          bundle.toJson()
+            ..remove('files')
+            ..remove('hooks'),
+        ),
+      );
+      // handle __brick__ gen
+      await projectDirectory.create(recursive: true);
+
       final fileCount = await generator
-          .generateBricks(DirectoryGeneratorTarget(_outputDirectory, Logger()));
+          .generateBricks(DirectoryGeneratorTarget(projectDirectory, Logger()));
       return fileCount;
     } catch (e) {
       throw UsageException(
@@ -78,14 +94,21 @@ class CreateCommand extends Command<int> {
     }
   }
 
-  Directory get _outputDirectory {
-    final rest = argResults!.rest;
+  String get _outputPath => argResults!.rest.first;
+  // Directory get _outputDirectory {
+  //   return Directory(_outputPath);
+  // }
 
-    return Directory(rest.first);
+  /// where is __brick__ at. Example: [_outputPath]/brick_factory/__brick__
+  Directory get projectDirectory {
+    return Directory([_outputPath, projectName, '__brick__'].join('/'));
   }
 
   /// Get bundlePath
   String get bundlePath {
     return argResults!['bundle'] as String;
   }
+
+  /// Get projectName, Example: bricks/brick_factory => brick_factory
+  String get projectName => basenameWithoutExtension(bundlePath);
 }

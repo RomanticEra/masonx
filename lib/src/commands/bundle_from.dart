@@ -66,12 +66,6 @@ extension CommandIO on CommandEIO {
   String get filename => basenameWithoutExtension(inputPath);
 }
 
-/// {@macro BrickFromCommand}
-class BFCommand extends BrickFromCommand {
-  @override
-  String get name => 'bf';
-}
-
 /// const String Example
 const String exampleKey = 'Example: masonx bf example/core.json .';
 
@@ -84,6 +78,9 @@ const String exampleKey = 'Example: masonx bf example/core.json .';
 class BrickFromCommand extends CommandEIO {
   /// {@macro BrickFromCommand}
   BrickFromCommand();
+
+  @override
+  List<String> get aliases => ['bf', 'bundle_from'];
 
   @override
   String get example => exampleKey;

@@ -5,11 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "mason_from",
+            "name": "masonx",
             "request": "launch",
             "type": "dart",
-            "program": "bin/mason_from.dart",
+            "program": "bin/masonx.dart",
             "args": ["create","-b","example/core.json","example/__brick__"],
+        },
+        {
+            "name": "bf",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["bf","example/core.json","example/__brick__"],
+        },
+        {
+            "name": "bf a",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["bf"],
         }
     ]
 }

@@ -1,3 +1,9 @@
+# 0.0.4
+1. deprecate `create`
+* create -h
+* refactor: create -b => bf
+* feat: add hook test
+* refactor: use a top try catch
 # 0.0.3
 fix: create hook fold
 # 0.0.2

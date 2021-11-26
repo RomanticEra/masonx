@@ -1,9 +1,9 @@
-name: mason_from
+name: masonx
 description: >
   A Dart template generator which helps teams generate brick from bundlebundle.
-version: 0.0.3
-homepage:  https://github.com/huang12zheng/mason_from
-repository: https://github.com/huang12zheng/mason_from
+version: 0.0.4
+homepage:  https://github.com/huang12zheng/masonx
+repository: https://github.com/huang12zheng/masonx
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -15,13 +15,12 @@ dependencies:
   universal_io: ^2.0.4
   very_good_cli: ^0.4.10
 
-
 dev_dependencies:
   mocktail: ^0.2.0
   test: ^1.19.3
   very_good_analysis: ^2.4.0
 executables:
-  mason_from:
+  masonx:
 scripts:
   test: |
     ## Run Dart tests and output them at directory `./coverage`:

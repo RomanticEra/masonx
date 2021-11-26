@@ -20,8 +20,11 @@ abstract class CommandEIO extends Command<int> {
     return handle();
   }
 
-  /// prepareEnity
-  Future<void> prepareEntity();
+  /// prepareEnity check input and output
+  Future<void> prepareEntity() async {
+    inputPath;
+    outputPath;
+  }
 
   /// prepare
   Future prepare();
@@ -43,7 +46,7 @@ extension CommandIO on CommandEIO {
     try {
       return results.rest[0];
     } catch (e) {
-      throw UsageException(
+      throw ExException(
         '''Could not find a input path for "masonx bundleF".''',
         example,
       );
@@ -55,7 +58,7 @@ extension CommandIO on CommandEIO {
     try {
       return results.rest[1];
     } catch (e) {
-      throw UsageException(
+      throw ExException(
         '''Could not find a output path for "masonx bundleF".''',
         example,
       );
@@ -92,19 +95,13 @@ class BrickFromCommand extends CommandEIO {
   @override
   final String name = 'bundleF';
 
-  /// prepareEntity
-  @override
-  Future<void> prepareEntity() async {
-    /// for first test inputPath
-    bundlePath;
-    await brickWriteYamlFile.create(recursive: true);
-    await projectDirectory.create(recursive: true);
-  }
-
   @override
   Future<int> handle() async {
     final bundle = await this.bundle;
     final generator = await this.generator;
+
+    await brickWriteYamlFile.create(recursive: true);
+    await projectDirectory.create(recursive: true);
     brickWriteYamlFile.writeAsStringSync(
       json2yaml(
         bundle.toJson()
@@ -146,6 +143,7 @@ extension PrepareModel on BrickFromCommand {
       MasonGenerator.fromBundle(await bundle);
 
   /// output1
+  /// should call behind input check
   File get brickWriteYamlFile =>
       File([outputPath, projectName, 'brick.yaml'].join('/'));
 

@@ -8,6 +8,12 @@ import 'package:universal_io/io.dart';
 import 'bundle_from.dart';
 export 'package:mason/mason.dart';
 
+/// to split Exception between mason and masonx
+class ExException extends UsageException {
+  // ignore: public_member_api_docs
+  ExException(String message, String usage) : super(message, usage);
+}
+
 /// a publish logger api
 Logger logger = Logger();
 
@@ -56,7 +62,7 @@ extension FromGenerator on MasonGenerator {
       return MasonBundle.fromJson(json);
     } on FileSystemException catch (e) {
       if ('Cannot open file' == e.message) {
-        throw UsageException(
+        throw ExException(
           '''Could not find a input file for "masonx bundleF".''',
           exampleKey,
         );

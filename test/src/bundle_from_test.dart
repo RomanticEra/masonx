@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:args/command_runner.dart';
 import 'package:mason/mason.dart';
 import 'package:masonx/masonx.dart';
 import 'package:masonx/src/commands/util.dart';
@@ -85,7 +84,7 @@ void main() {
       overridePrint(() async {
         try {
           await runner.run(['bf']);
-        } on UsageException catch (e) {
+        } on ExException catch (e) {
           expect(
             e.message,
             'Could not find a input path for "masonx bundleF".',
@@ -98,7 +97,7 @@ void main() {
       overridePrint(() async {
         try {
           await runner.run(['bf', 'a', '.']);
-        } on UsageException catch (e) {
+        } on ExException catch (e) {
           expect(
             e.message,
             '''Could not find a input file for "masonx bundleF".''',
@@ -113,7 +112,7 @@ void main() {
       overridePrint(() async {
         try {
           await runner.run(['bf', bundlePath]);
-        } on UsageException catch (e) {
+        } on ExException catch (e) {
           expect(
             e.message,
             'Could not find a output path for "masonx bundleF".',

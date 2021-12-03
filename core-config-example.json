@@ -1,0 +1,13 @@
+{
+  "#snakeCase": "{{#snakeCase}}",
+  "project_name": "{{project_name}}",
+  "/snakeCase": "{{/snakeCase}}",
+  "#titleCase": "{{#titleCase}}",
+  "/titleCase": "{{/titleCase}}",
+  "{description": "{{{description}}",
+  "#dotCase": "{{#dotCase}}",
+  "org_name": "{{org_name}}",
+  "/dotCase": "{{/dotCase}}",
+  "#paramCase": "{{#paramCase}}",
+  "/paramCase": "{{/paramCase}}"
+}

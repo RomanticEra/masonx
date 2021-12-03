@@ -1,20 +1,9 @@
 /// To get a brickbrick from bundlebundle
 library masonx;
 
-import 'package:args/command_runner.dart';
-// ignore: implementation_imports
-import 'package:mason/src/command_runner.dart' show MasonCommandRunner;
-
-import 'src/commands/bundle_from.dart';
-
-final _mason = MasonCommandRunner();
-final String _usage = _mason.usage.split('\n').skip(2).join('\n');
-
-/// public for share, entrypoint of command masonx
-final masonx = CommandRunner<int>(
-  'masonx',
-  'Ext Cli of Mason,\n'
-      '-----------------------------------------------\n'
-      '$_usage\n'
-      '-----------------------------------------------\n',
-)..addCommand(BrickFromCommand());
+export 'package:masonx/src/commands/util/command/business/add_options_extension.dart'
+    show MasonParseEnum;
+export 'package:masonx/src/commands/util/command/command_prop.dart'
+    show CommandAdapter;
+export 'src/commands/bundle_from.dart';
+export 'src/masonx.dart' show masonx;

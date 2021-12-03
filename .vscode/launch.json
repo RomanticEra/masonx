@@ -19,11 +19,39 @@
             "args": ["bf","example/core.json","example/__brick__"],
         },
         {
-            "name": "bf a",
+            "name": "patch0",
             "request": "launch",
             "type": "dart",
             "program": "bin/masonx.dart",
-            "args": ["bf"],
+            "args": ["patch", "dart_package_factory","example","-c","example/config.json"],
+        },
+        {
+            "name": "patch1",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["patch", "dart_package_factory","example"],
+        },
+        {
+            "name": "patch",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["patch", "hello", "example","-c","example/config.json"],
+        },
+        {
+            "name": "bf -h",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["bf","-h"],
+        },
+        {
+            "name": "gc",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["gc","/Users/huangzheng/flutter_bricks/mason_brick/bundle/dart_cli_factory.bundle"],
         }
     ]
 }

@@ -1,0 +1,1 @@
+{"username":"{{username}}","project_name":"{{project_name}}","# pascalCase":"{{# pascalCase}}","/ pascalCase":"{{/ pascalCase}}","description":"{{description}}","matrix":{"os":"{{matrix.os}}"},"secrets":{"CREDENTIAL_JSON":"{{secrets.CREDENTIAL_JSON}}"}}

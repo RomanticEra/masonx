@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:mason/mason.dart';
 import 'package:masonx/masonx.dart';
-import 'package:masonx/src/commands/util.dart';
+import 'package:masonx/src/commands/util/index.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:romantic_common/romantic_common.dart';
 import 'package:test/test.dart';
 import 'package:universal_io/io.dart';
 
@@ -15,10 +16,7 @@ void main() {
   final runner = masonx;
   const bundlePath = 'example/core.json';
   const hookPath = 'example/hook.json';
-  var _outdir = Directory.systemTemp.createTempSync();
-  setUpAll(() async {
-    _outdir = Directory.systemTemp.createTempSync();
-  });
+  final _outdir = Directory.systemTemp.createTempSync();
 
   group('FromGenerator', () {
     late MasonBundle bundle;
@@ -71,6 +69,13 @@ void main() {
       },
     );
     test(
+      'run success',
+      () async {
+        final result = await runner.run(['bf', '-j$bundlePath', _outdir.path]);
+        expect(result, 228);
+      },
+    );
+    test(
       'run with hook',
       () async {
         final result = await runner.run(['bf', hookPath, _outdir.path]);
@@ -87,7 +92,7 @@ void main() {
         } on ExException catch (e) {
           expect(
             e.message,
-            'Could not find a input path for "masonx bundleF".',
+            'bundle-path cloud not find.',
           );
         }
       }),
@@ -96,7 +101,7 @@ void main() {
       '[Wrong Input](masonx bf noExistFile outdir)',
       overridePrint(() async {
         try {
-          await runner.run(['bf', 'a', '.']);
+          await runner.run(['bf', 'a', _outdir.path]);
         } on ExException catch (e) {
           expect(
             e.message,
@@ -115,10 +120,34 @@ void main() {
         } on ExException catch (e) {
           expect(
             e.message,
-            'Could not find a output path for "masonx bundleF".',
+            'output-dir cloud not find.',
           );
         }
       }),
     );
   });
+
+  test('[generator.generateBricks]', () async {
+    final bundle = await FromGenerator.getBundle(bundlePath);
+    final generator = await MasonGenerator.fromBundle(bundle);
+    final vars = generator.getTopVars();
+    // print(vars);
+
+    // expect(fileCount, 228);
+  });
+  // test('[generator.generateBricks]', () async {
+  //   final bundle = await FromGenerator.getBundle(hookPath);
+  //   final generator = await MasonGenerator.fromBundle(bundle);
+  //   // final target = DirectoryGeneratorTarget(_outdir, MockLogger());
+  //   // final fileCount = await generator.generateBricks(target);
+  //   final vars = generator.getVars();
+  //   // print(vars);
+  //   final a = Map.fromIterables(
+  //     vars.map((e) => e.substring(2, e.length - 2)),
+  //     vars,
+  //   );
+  //   print(json.encode(a));
+
+  //   expect(1, 1);
+  // });
 }

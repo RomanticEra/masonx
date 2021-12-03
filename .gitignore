@@ -10,3 +10,5 @@ coverage/
 test/.*
 example/__brick__
 coverage_badge.svg
+.mason/bricks.json
+example/HELLO.md

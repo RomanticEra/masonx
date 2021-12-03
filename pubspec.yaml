@@ -1,24 +1,30 @@
 name: masonx
 description: >
   A Dart template generator which helps teams generate brick from bundlebundle.
-version: 0.0.4
+version: 0.0.7
 homepage:  https://github.com/huang12zheng/masonx
 repository: https://github.com/huang12zheng/masonx
+publish_to: none
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
 dependencies:
   args: ^2.3.0
+  enum_to_string: ^2.0.1
   fhir_yaml: ^0.5.1
   mason: ^0.0.1-dev.57
   path: ^1.8.0
+  recase: ^4.0.0
+  romantic_common: ^0.0.3
   universal_io: ^2.0.4
-  very_good_cli: ^0.4.10
 
 dev_dependencies:
   mocktail: ^0.2.0
+  romantic_analysis: ^0.0.1-dev.1
+
+  romantic_fake:
+      path: /Users/huangzheng/RomanticEra/romantic_fake/packages/romantic_fake
   test: ^1.19.3
-  very_good_analysis: ^2.4.0
 executables:
   masonx:
 scripts:
@@ -26,10 +32,10 @@ scripts:
     ## Run Dart tests and output them at directory `./coverage`:
     dart run test --coverage=./coverage
 
-    ## Format collected coverage to LCOV (only for directory "lib")
-    dart pub global run coverage:format_coverage --packages=.packages --report-on=lib --lcov -o ./coverage/lcov.info -i ./coverage
     derry get_coverage
   get_coverage: |
+    ## Format collected coverage to LCOV (only for directory "lib")
+    dart pub global run coverage:format_coverage --packages=.packages --report-on=lib --lcov -o ./coverage/lcov.info -i ./coverage --check-ignore
     ## Generate LCOV report:
     genhtml -o ./coverage/report ./coverage/lcov.info
 

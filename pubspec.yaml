@@ -2,9 +2,8 @@ name: masonx
 description: >
   A Dart template generator which helps teams generate brick from bundlebundle.
 version: 0.0.7
-homepage:  https://github.com/huang12zheng/masonx
-repository: https://github.com/huang12zheng/masonx
-publish_to: none
+homepage:  https://github.com/RomanticEra/masonx
+repository: https://github.com/RomanticEra/masonx
 
 environment:
   sdk: ">=2.14.0 <3.0.0"

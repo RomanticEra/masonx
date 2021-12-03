@@ -1,7 +1,7 @@
 bricks:
   hello:
-    path: bricks/hello
+    path: /Users/huangzheng/mason_from/bricks/hello
   hello_split:
-    path: bricks/hello_split
+    path: /Users/huangzheng/mason_from/bricks/hello_split
   hooks:
-    path: bricks/hooks
+    path: /Users/huangzheng/mason_from/bricks/hooks

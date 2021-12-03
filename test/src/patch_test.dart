@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:mason/mason.dart';
 import 'package:masonx/masonx.dart';
 import 'package:masonx/src/commands/util/index.dart';
@@ -13,9 +11,6 @@ class MockLogger extends Mock implements Logger {}
 
 void main() {
   final runner = masonx;
-  const bundlePath = 'example/core.json';
-  const hookPath = 'example/hook.json';
-  final _outdir = Directory.systemTemp.createTempSync();
 
   group('[ClosureVarBrickAdapter`', () {
     test(
@@ -26,14 +21,10 @@ void main() {
             'patch',
             'hello_split',
             'example',
-            // '-c',
-            // 'example/hello_config.json',
           ]);
         } on ExException catch (e) {
           expect(e.message, 'Please use no . var');
         }
-
-        // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
       },
     );
     test(
@@ -52,7 +43,6 @@ void main() {
         } on ExException catch (e) {
           expect(e.message, 'There is no brick.');
         }
-        // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
       },
     );
     test(
@@ -65,8 +55,6 @@ void main() {
           '-c',
           'example/hook_config.json',
         ]);
-
-        // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
       },
     );
     test(
@@ -88,49 +76,5 @@ void main() {
         );
       },
     );
-    // test(
-    //   '[getConfigForGenerator][with configPath]',
-    //   () async {
-    //     final result = await runner.run([
-    //       'patch',
-    //       'hello',
-    //       'example',
-    //       // '-c',
-    //       // 'example/hello_config.json',
-    //     ]);
-    //     expect(result, 1);
-
-    //     // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
-    //   },
-    // );
-  });
-  group('[Usually Command Run] `mason bf bundlePath outdir`', () {
-    //   test(
-    //     '[description]',
-    //     () async {
-    //       await ''.getFileWithJson;
-    //       // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
-    //     },
-    //   );
-    // });
-
-    // test('[generator.generateBricks]', () async {
-    //   final bundle = await FromGenerator.getBundle(hookPath);
-    //   final generator = await MasonGenerator.fromBundle(bundle);
-    //   // final target = DirectoryGeneratorTarget(_outdir, MockLogger());
-    //   // final fileCount = await generator.generateBricks(target);
-    //   final vars = generator.getVars();
-    //   // print(vars);
-    //   // final a = Map.fromIterables(
-    //   //   vars.map((e) => e.substring(2, e.length - 2)),
-    //   //   vars,
-    //   // );
-    //   // print(json.encode(a));
-
-    //   expect(1, 1);
-    // });
-    // test('[generator.generateBricks]', () async {
-    //   final result = await runner.run(['patch', 'hello', 'example']);
-    // });
   });
 }

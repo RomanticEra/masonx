@@ -126,28 +126,4 @@ void main() {
       }),
     );
   });
-
-  test('[generator.generateBricks]', () async {
-    final bundle = await FromGenerator.getBundle(bundlePath);
-    final generator = await MasonGenerator.fromBundle(bundle);
-    final vars = generator.getTopVars();
-    // print(vars);
-
-    // expect(fileCount, 228);
-  });
-  // test('[generator.generateBricks]', () async {
-  //   final bundle = await FromGenerator.getBundle(hookPath);
-  //   final generator = await MasonGenerator.fromBundle(bundle);
-  //   // final target = DirectoryGeneratorTarget(_outdir, MockLogger());
-  //   // final fileCount = await generator.generateBricks(target);
-  //   final vars = generator.getVars();
-  //   // print(vars);
-  //   final a = Map.fromIterables(
-  //     vars.map((e) => e.substring(2, e.length - 2)),
-  //     vars,
-  //   );
-  //   print(json.encode(a));
-
-  //   expect(1, 1);
-  // });
 }

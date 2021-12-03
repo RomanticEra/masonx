@@ -111,7 +111,6 @@ extension GenConfig on MasonGenerator {
       (previousValue, element) =>
           <String, dynamic>{...previousValue, ...var2map(element)},
     );
-    // return json.encode(_map);
   }
 }
 
@@ -211,7 +210,6 @@ class ClosureVarBrickAdapter {
       );
     }
     for (final variable in closureVarBrick!.vars) {
-      // print("${vars.containsKey(variable)}  @$variable@");
       if (vars.containsKey(variable)) continue;
       vars.addAll(<String, dynamic>{variable: logger.prompt('$variable: ')});
     }

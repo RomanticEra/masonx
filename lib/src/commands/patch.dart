@@ -41,9 +41,7 @@ class PatchCommand extends MasonCommandBase {
   @override
   Future<int> handle() async {
     final make = MakeCommand();
-    // final vars = <String, dynamic>{};
 
-    // try {
     final brickMason = make.bricks.firstWhere(
       (e) => e.name == brickKey,
       orElse: () => throw ExException(

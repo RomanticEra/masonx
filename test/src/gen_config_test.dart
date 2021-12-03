@@ -1,33 +1,19 @@
 // ignore_for_file: missing_whitespace_between_adjacent_strings
 
-import 'dart:convert';
-
 import 'package:mason/mason.dart';
 import 'package:masonx/masonx.dart';
 import 'package:masonx/src/commands/util/index.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:romantic_fake/romantic_fake.dart';
 import 'package:test/test.dart';
 import 'package:universal_io/io.dart';
 
 class MockLogger extends Mock implements Logger {}
 
-void main() async {
+void main() {
   final runner = masonx;
-  const bundlePath = 'example/core.json';
   const hookPath = 'example/hook.json';
-  final _outdir = Directory.systemTemp.createTempSync();
 
   group('[Usually Command Run] `mason bf bundlePath outdir`', () {
-    //   test(
-    //     '[description]',
-    //     () async {
-    //       await ''.getFileWithJson;
-    //       // await runner.run(['patch', '-h', bundlePath, hookPath, _outdir.path]);
-    //     },
-    //   );
-    // });
-
     test('[generator.getAllContent][hook]', () async {
       final bundle = await FromGenerator.getBundle(hookPath);
       final generator = await MasonGenerator.fromBundle(bundle);
@@ -58,7 +44,6 @@ void main() async {
       expect(
         File('./dart_cli_factory-config-example.json').readAsStringSync(),
         '{"username":"{{username}}","project_name":"{{project_name}}","# pascalCase":"{{# pascalCase}}","/ pascalCase":"{{/ pascalCase}}","description":"{{description}}","matrix":{"os":"{{matrix.os}}"},"secrets":{"CREDENTIAL_JSON":"{{secrets.CREDENTIAL_JSON}}"}}',
-        // 'Hi Hooks!',
       );
     });
   });

@@ -6,6 +6,7 @@ import 'package:args/command_runner.dart';
 import 'package:mason/src/command_runner.dart' show MasonCommandRunner;
 
 import 'commands/bundle_from.dart';
+import 'commands/decode_bundle.dart';
 import 'commands/gen_config.dart';
 import 'commands/patch.dart';
 
@@ -23,4 +24,5 @@ final masonx = CommandRunner<int>(
 )
   ..addCommand(BrickFromCommand())
   ..addCommand(GenConfigCommand())
+  ..addCommand(DecodeBundleCommand())
   ..addCommand(PatchCommand());

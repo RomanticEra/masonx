@@ -1,3 +1,5 @@
+# 0.0.8
+feat: fix: #9 decode bundle
 # 0.0.7
 1. feat: #7 global config for masonx
 2. feat: #1 patch command for masonx

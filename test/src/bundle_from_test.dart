@@ -126,4 +126,18 @@ void main() {
       }),
     );
   });
+  group('[DecodeBundleCommand]', () {
+    overridePrint(
+      () => test(
+        'decode from bundle[base64]',
+        () async {
+          printLogs = [];
+          await runner.run(['db', hookPath]);
+          expect(printLogs, [
+            '''{"files":[{"path":"hooks.md","data":"Hi {{name}}!","type":"text"}],"hooks":[{"path":"post_gen.dart","data":"import 'dart:io';void main(){final file=File('.post_gen.txt');file.writeAsStringSync('post_gen: {{name}}');}","type":"text"},{"path":"pre_gen.dart","data":"import 'dart:io';void main(){final file=File('.pre_gen.txt');file.writeAsStringSync('pre_gen: {{name}}');}","type":"text"}],"name":"hooks","description":"A Hooks Example Template","vars":["name"]}'''
+          ]);
+        },
+      ),
+    );
+  });
 }

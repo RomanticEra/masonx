@@ -1,5 +1,8 @@
 include: package:romantic_analysis/analysis_options_package.yaml
-
+analyzer:
+  exclude:
+    - bricks/**
+    - example/**
 linter:
   rules:
     

@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:mason/mason.dart';
+// ignore: implementation_imports
 import 'package:mason/src/brick_yaml.dart';
 import 'package:romantic_common/romantic_common.dart';
 import 'package:universal_io/io.dart';
 
-import '../../../bundle_from.dart';
 import '../../index.dart';
 import '../command_prop.dart';
 
@@ -40,8 +41,8 @@ extension FromGenerator on MasonGenerator {
     } on FileSystemException catch (e) {
       if ('Cannot open file' == e.message) {
         throw ExException(
-          '''Could not find a input file for "masonx bundleF".''',
-          exampleKey,
+          '''Could not find a input file for "masonx".''',
+          'Error on factory FromGenerator.getBundle',
         );
       }
       rethrow;
@@ -196,6 +197,7 @@ class ClosureVarBrickAdapter {
       'usage is need closureVarBrick, get it by [switch2ClosureVarGenerator]',
     );
     final hiddenVar = await closureVarBrick!.genConfig();
+    logger.info('hidden var are : ${json.encode(hiddenVar)}');
     final vars = hiddenVar
       ..removeWhere(
         // ignore: avoid_annotating_with_dynamic
@@ -209,6 +211,7 @@ class ClosureVarBrickAdapter {
         configPath!,
       );
     }
+    // print(closureVarBrick!.vars);
     for (final variable in closureVarBrick!.vars) {
       if (vars.containsKey(variable)) continue;
       vars.addAll(<String, dynamic>{variable: logger.prompt('$variable: ')});

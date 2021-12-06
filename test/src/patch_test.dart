@@ -77,4 +77,21 @@ void main() {
       },
     );
   });
+  group('[PatchCommand]', () {
+    test(
+      '[getConfigForGenerator][with prompt]',
+      () async {
+        final _logger = logger;
+        logger = MockLogger();
+        when(() => logger.prompt('project_name: ')).thenReturn('Hooks');
+
+        await runner.run([
+          'patch',
+          'melos',
+          outdir.path,
+        ]);
+        logger = _logger;
+      },
+    );
+  });
 }

@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'dart:convert';
+
 import 'package:mason/mason.dart';
+// ignore: implementation_imports
 import 'package:mason/src/commands/make.dart' show MakeCommand;
 import 'package:romantic_common/romantic_common.dart';
 import 'package:universal_io/io.dart';
@@ -50,12 +53,15 @@ class PatchCommand extends MasonCommandBase {
       ),
     );
 
+    logger.info(json.encode(brickMason.toJson()));
+
     final adapter = await ClosureVarBrickAdapter(
       brickMason: brickMason,
       configPath: configPath,
     ).switch2ClosureVarGenerator();
 
     final vars = await adapter.getConfigForGenerator();
+    logger.info('var is : ${json.encode(vars)}');
 
     final target = DirectoryGeneratorTarget(
       Directory(outputDir),
@@ -86,7 +92,7 @@ class PatchCommand extends MasonCommandBase {
     //   if (exitCode != ExitCode.success.code) return exitCode;
     // }
     logger
-      ..info('Output Dir is: ${target.dir.path}')
+      ..info('Output Dir is: ${target.dir.path} with $fileCount files')
       ..info(
         'You could check as: ${(vars['project_name'] ?? 'there') as String}',
       );

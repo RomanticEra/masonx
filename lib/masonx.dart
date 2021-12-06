@@ -5,5 +5,5 @@ export 'package:masonx/src/commands/util/command/business/add_options_extension.
     show MasonParseEnum;
 export 'package:masonx/src/commands/util/command/command_prop.dart'
     show CommandAdapter;
-export 'src/commands/bundle_from.dart';
+export 'src/commands/brick_from.dart';
 export 'src/masonx.dart' show masonx;

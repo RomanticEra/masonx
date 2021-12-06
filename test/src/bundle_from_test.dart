@@ -5,6 +5,7 @@ import 'package:masonx/masonx.dart';
 import 'package:masonx/src/commands/util/index.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:romantic_common/romantic_common.dart';
+import 'package:romantic_fake/romantic_fake.dart';
 import 'package:test/test.dart';
 import 'package:universal_io/io.dart';
 
@@ -105,7 +106,7 @@ void main() {
         } on ExException catch (e) {
           expect(
             e.message,
-            '''Could not find a input file for "masonx bundleF".''',
+            '''Could not find a input file for "masonx".''',
           );
         }
       }),
@@ -127,17 +128,20 @@ void main() {
     );
   });
   group('[DecodeBundleCommand]', () {
-    overridePrint(
-      () => test(
-        'decode from bundle[base64]',
-        () async {
-          printLogs = [];
-          await runner.run(['db', hookPath]);
-          expect(printLogs, [
-            '''{"files":[{"path":"hooks.md","data":"Hi {{name}}!","type":"text"}],"hooks":[{"path":"post_gen.dart","data":"import 'dart:io';void main(){final file=File('.post_gen.txt');file.writeAsStringSync('post_gen: {{name}}');}","type":"text"},{"path":"pre_gen.dart","data":"import 'dart:io';void main(){final file=File('.pre_gen.txt');file.writeAsStringSync('pre_gen: {{name}}');}","type":"text"}],"name":"hooks","description":"A Hooks Example Template","vars":["name"]}'''
-          ]);
-        },
-      ),
-    );
+    test('decode from bundle[base64][just test no error]', () async {
+      await runner.run(['db', hookPath]);
+    });
+    test('decode from bundle[base64]', () async {
+      // logger = MockLogger();
+      // when(() => logger.info(any())).thenReturn((e)=>e);
+      await runner.run(['db', hookPath, outdir.path]);
+      expect(
+        File('${outdir.path}/hook-decode.json').readAsStringSync(),
+        '''{"files":[{"path":"hooks.md","data":"Hi {{name}}!","type":"text"}],"hooks":[{"path":"post_gen.dart","data":"import 'dart:io';void main(){final file=File('.post_gen.txt');file.writeAsStringSync('post_gen: {{name}}');}","type":"text"},{"path":"pre_gen.dart","data":"import 'dart:io';void main(){final file=File('.pre_gen.txt');file.writeAsStringSync('pre_gen: {{name}}');}","type":"text"}],"name":"hooks","description":"A Hooks Example Template","vars":["name"]}''',
+        // 'Hi Hooks!',
+      );
+      // expect(printLogs, [
+      // ]);
+    });
   });
 }

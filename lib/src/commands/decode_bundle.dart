@@ -9,7 +9,7 @@ import 'util/index.dart';
 // import 'package:universal_io/io.dart';
 
 /// const String Example
-const String exampleKey = 'Example: masonx gen_config xxx/bundle.bundle .';
+const String exampleKey = 'Example: masonx db bundle.bundle .';
 
 /// GenConfigCommand
 class DecodeBundleCommand extends MasonCommandBase {
@@ -52,13 +52,13 @@ void decodeBase64OnMason(Map<String, dynamic> _map) {
   _map['data'] = (_map['data']! as String).decodeBase64;
 }
 
-/// DecodeBase64OnMason
-extension DecodeBase64OnMason on Map<String, String> {
-  /// DecodeBase64OnMason
-  void decodeBase64OnMason() {
-    this['data'] = this['data']!.decodeBase64;
-  }
-}
+// /// DecodeBase64OnMason
+// extension DecodeBase64OnMason on Map<String, String> {
+//   /// DecodeBase64OnMason
+//   void decodeBase64OnMason() {
+//     this['data'] = this['data']!.decodeBase64;
+//   }
+// }
 
 /// Decode Base64
 extension DecodeBase64OnString on String {
@@ -67,35 +67,35 @@ extension DecodeBase64OnString on String {
 }
 
 /// Decode Base64
-extension DecodeBase64OnList<T> on List<T> {
-  /// to normal string
-  List<T> get decodeBase64OnValue => map<T>((e) {
-        if (e is String) return e.decodeBase64 as T;
-        if (e is Map<String, String>) return e.decodeBase64OnValue as T;
-        return e;
-      }).toList();
-}
+// extension DecodeBase64OnList<T> on List<T> {
+//   /// to normal string
+//   List<T> get decodeBase64OnValue => map<T>((e) {
+//         if (e is String) return e.decodeBase64 as T;
+//         if (e is Map<String, String>) return e.decodeBase64OnValue as T;
+//         return e;
+//       }).toList();
+// }
 
-/// Decode Base64
-extension DecodeBase64OnMap on Map<String, dynamic> {
-  /// to normal map
-  Map<String, dynamic> get decodeBase64OnValue {
-    final _map = this;
-    return _map
-      // ignore: avoid_annotating_with_dynamic
-      ..forEach((key, dynamic value) {
-        if (value is Map<String, dynamic>) {
-          _map[key] = value.decodeBase64OnValue;
-        }
-        if (value is List<Map<String, dynamic>>) {
-          _map[key] = value.map((e) => e.decodeBase64OnValue).toList();
-        }
-        if (value is List<String>) {
-          _map[key] = value.decodeBase64OnValue;
-        }
-        if (value is String) {
-          _map[key] = value.decodeBase64;
-        }
-      });
-  }
-}
+// /// Decode Base64
+// extension DecodeBase64OnMap on Map<String, dynamic> {
+//   /// to normal map
+//   Map<String, dynamic> get decodeBase64OnValue {
+//     final _map = this;
+//     return _map
+//       // ignore: avoid_annotating_with_dynamic
+//       ..forEach((key, dynamic value) {
+//         if (value is Map<String, dynamic>) {
+//           _map[key] = value.decodeBase64OnValue;
+//         }
+//         if (value is List<Map<String, dynamic>>) {
+//           _map[key] = value.map((e) => e.decodeBase64OnValue).toList();
+//         }
+//         if (value is List<String>) {
+//           _map[key] = value.decodeBase64OnValue;
+//         }
+//         if (value is String) {
+//           _map[key] = value.decodeBase64;
+//         }
+//       });
+//   }
+// }

@@ -1,3 +1,7 @@
+## 0.0.10
+
+ - **FEAT**: add command reset to reset bricks.yaml.
+
 ## 0.0.9
 
  - **FEAT**: show and init config(fixes #10).

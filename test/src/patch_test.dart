@@ -12,7 +12,7 @@ class MockLogger extends Mock implements Logger {}
 void main() {
   final runner = masonx;
 
-  group('[ClosureVarBrickAdapter`', () {
+  group('[ClosureVarBrickAdapter', () {
     test(
       '[throw a error][with split]',
       () async {

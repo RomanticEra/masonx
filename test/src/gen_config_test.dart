@@ -13,7 +13,7 @@ void main() {
   final runner = masonx;
   const hookPath = 'example/hook.json';
 
-  group('[Usually Command Run] `mason bf bundlePath outdir`', () {
+  group('[Usually Command Run] mason bf bundlePath outdir', () {
     test('[generator.getAllContent][hook]', () async {
       final bundle = await FromGenerator.getBundle(hookPath);
       final generator = await MasonGenerator.fromBundle(bundle);
@@ -45,6 +45,22 @@ void main() {
         File('./dart_cli_factory-config-example.json').readAsStringSync(),
         '{"username":"{{username}}","project_name":"{{project_name}}","# pascalCase":"{{# pascalCase}}","/ pascalCase":"{{/ pascalCase}}","description":"{{description}}","matrix":{"os":"{{matrix.os}}"},"secrets":{"CREDENTIAL_JSON":"{{secrets.CREDENTIAL_JSON}}"}}',
       );
+    });
+  });
+  group('reset', () {
+    test('[reset mason/bricks.json][rm reset]', () async {
+      await Process.run(
+        'rm',
+        ['.mason/bricks.json'],
+        workingDirectory: '.',
+      );
+      expect(File('.mason/bricks.json').existsSync(), false);
+      await runner.run(['reset']);
+      expect(File('.mason/bricks.json').existsSync(), true);
+    });
+    test('[reset mason/bricks.json]', () async {
+      await runner.run(['reset']);
+      expect(File('.mason/bricks.json').existsSync(), true);
     });
   });
 }

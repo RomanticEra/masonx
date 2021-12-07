@@ -8,6 +8,7 @@ import 'commands/config.dart';
 import 'commands/decode_bundle.dart';
 import 'commands/gen_config.dart';
 import 'commands/patch.dart';
+import 'commands/reset_mason.dart';
 
 /// origin software
 final mason = MasonCommandRunner();
@@ -25,4 +26,5 @@ final masonx = CommandRunner<int>(
   ..addCommand(GenConfigCommand())
   ..addCommand(DecodeBundleCommand())
   ..addCommand(ConfigCommand())
+  ..addCommand(RestMasonCommand())
   ..addCommand(PatchCommand());

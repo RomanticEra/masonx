@@ -51,7 +51,7 @@ void main() {
     });
   });
 
-  group('[Usually Command Run] `mason bf bundlePath outdir`', () {
+  group('[Usually Command Run] mason bf bundlePath outdir', () {
     test(
       '[description]',
       overridePrint(() async {

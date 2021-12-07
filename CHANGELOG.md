@@ -1,3 +1,7 @@
+## 0.0.9
+
+ - **FEAT**: show and init config(fixes #10).
+
 # 0.0.8
 feat: fix: #9 decode bundle
 # 0.0.7

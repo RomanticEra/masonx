@@ -39,3 +39,11 @@ masonx patch somebrick output -c config
 > $ masonx patch somebrick output --name xxx
 
 > hint: somebrick is not brickDir,please mason add it first
+
+## get bricks
+> [extend from masox]
+```sh
+masonx add --global --source git https://github.com/RomanticEra/bricks --path '' --ref flutter_project
+masonx add --global --source git https://github.com/RomanticEra/bricks --path '' --ref dart_package_factory
+masonx add --global --source git https://github.com/RomanticEra/bricks --path '' --ref flutter_project
+```

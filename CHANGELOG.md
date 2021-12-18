@@ -1,3 +1,12 @@
+
+## 0.0.11
+ - **CHOR**: add example for someone who want to get bricks.
+ - **FEAT**: ADD COMMAND `masonx config edit`
+ - **FEAT**: 
+    1. contentVar classification would check whether contains brickVar.
+    2. patch use config flag
+    fix: #12
+ - **FIX**: no error if never install mason
 ## 0.0.10
 
  - **FEAT**: add command reset to reset bricks.yaml.

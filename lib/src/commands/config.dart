@@ -8,10 +8,12 @@ import 'util/index.dart';
 /// ConfigCommand
 class ConfigCommand extends MasonCommandBase {
   /// {@macro PatchCommand}
-  ConfigCommand() : super('config', '', 'show or init global config', [], []) {
+  ConfigCommand()
+      : super('config', '', 'show or init global config', ['c'], []) {
     argParser
       ..addFlag('list', abbr: 'l', help: 'show info of mason-cache.')
-      ..addFlag('init', abbr: 'i', help: 'generate a global mason-cache.');
+      ..addFlag('init', abbr: 'i', help: 'generate a global mason-cache.')
+      ..addFlag('edit', abbr: 'e', help: 'edit global mason-cache.');
   }
   @override
   Future<int> handle() async {
@@ -32,6 +34,12 @@ class ConfigCommand extends MasonCommandBase {
       } else {
         file.writeAsStringSync('{}');
       }
+      return 0;
+    }
+    if (results['edit'] as bool) {
+      await Process.run('code', [
+        [rootDir().path, '.config.json'].join('/')
+      ]);
       return 0;
     }
 

@@ -1,3 +1,5 @@
+// ignore: implementation_imports
+import 'package:mason/src/command_runner.dart' show MasonCommandRunner;
 // ignore: prefer_relative_imports
 import 'package:masonx/src/commands/util/util.dart';
 import 'package:path/path.dart';
@@ -59,14 +61,8 @@ class RestMasonCommand extends MasonCommandBase {
       }
     }
     if (!File('.mason/bricks.json').existsSync()) {
-      final result = await Process.run('mason', ['get'], workingDirectory: '.');
-      logger.info(
-        <dynamic>[result.stdout, result.stderr]
-            // ignore: avoid_annotating_with_dynamic
-            .map((dynamic e) => e.toString())
-            .join(' '),
-      );
-      return 0;
+      final result = await MasonCommandRunner().run(['get']);
+      return result;
     }
     throw ExException('Flag is false', ''); // coverage:ignore-line
   }

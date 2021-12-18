@@ -4,9 +4,9 @@ import 'package:args/command_runner.dart';
 import 'package:mason/src/command_runner.dart' show MasonCommandRunner;
 
 import 'commands/brick_from.dart';
-import 'commands/config.dart';
 import 'commands/decode_bundle.dart';
 import 'commands/gen_config.dart';
+import 'commands/global_config.dart';
 import 'commands/patch.dart';
 import 'commands/reset_mason.dart';
 

@@ -9,6 +9,7 @@ import 'package:romantic_common/romantic_common.dart';
 import 'package:universal_io/io.dart';
 
 import '../../masonx.dart';
+import '../io.dart';
 import 'util/command/business/index.dart';
 import 'util/index.dart';
 
@@ -95,9 +96,14 @@ class PatchCommand extends MasonCommandBase {
     //   if (exitCode != ExitCode.success.code) return exitCode;
     // }
     logger
-      ..info('Output Dir is: ${target.dir.path} with $fileCount files')
       ..info(
-        'You could check as: ${(vars['project_name'] ?? 'there') as String}',
+        lightYellow
+            .wrap('Output Dir is: ${target.dir.path} with $fileCount files'),
+      )
+      ..info(
+        lightYellow.wrap(
+          'You could check as: ${vars['project_name'] as String? ?? 'there'}',
+        ),
       );
     return fileCount;
   }

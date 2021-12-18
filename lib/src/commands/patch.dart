@@ -9,7 +9,6 @@ import 'package:romantic_common/romantic_common.dart';
 import 'package:universal_io/io.dart';
 
 import '../../masonx.dart';
-import 'util/command/business/generator.dart';
 import 'util/command/business/index.dart';
 import 'util/index.dart';
 
@@ -30,9 +29,13 @@ class PatchCommand extends MasonCommandBase {
       : super(
           'p',
           exampleKey,
-          'Get brick template from bundle or dart.',
+          'Get brick template from brick template',
           ['patch'],
-          [MasonParseEnum.brickKey, MasonParseEnum.outputDir],
+          [
+            MasonParseEnum.brickKey,
+            MasonParseEnum.outputDir,
+            MasonParseEnum.configPath
+          ],
         );
 
   /// 1. Get ContentVar in Content

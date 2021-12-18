@@ -92,12 +92,25 @@ extension GenConfig on MasonGenerator {
   Set<String> getTopVars([bool ignoreVars = false]) {
     final _delimeterRegExp = RegExp('{{(.*?)}}');
     final matches = _delimeterRegExp.allMatches(getAllContent());
-    return matches
+    final contentVar = matches
         .map(
           (match) => match.group(1)!.trim().split('.').first,
         )
-        .toSet()
-      ..removeAll(ignoreVars ? vars : <String>[]);
+        .toSet();
+    if (ignoreVars) {
+      contentVar.removeAll(
+        contentVar.where(
+          (e) => !vars.any((element) => e.contains(element)),
+        ),
+      );
+    } else {
+      contentVar.addAll(
+        vars.where(
+          (element) => contentVar.any((e) => e.contains(element)),
+        ),
+      );
+    }
+    return contentVar;
   }
 
   /// Example:

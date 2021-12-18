@@ -23,7 +23,7 @@
             "request": "launch",
             "type": "dart",
             "program": "bin/masonx.dart",
-            "args": ["patch", "dart_package_factory","example","-c","example/config.json"],
+            "args": ["patch", "dart_package_factory","example","-c","/tmp/config.json"],
         },
         {
             "name": "patch1",
@@ -45,6 +45,13 @@
             "type": "dart",
             "program": "bin/masonx.dart",
             "args": ["bf","-h"],
+        },
+        {
+            "name": "config init",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/masonx.dart",
+            "args": ["config","-i"],
         },
         {
             "name": "gc",

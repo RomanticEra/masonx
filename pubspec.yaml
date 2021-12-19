@@ -1,7 +1,7 @@
 name: masonx
 description: >
   A Dart template generator which helps teams generate brick from bundlebundle.
-version: 0.0.11
+version: 0.0.12
 homepage:  https://github.com/RomanticEra/masonx
 repository: https://github.com/RomanticEra/masonx
 
@@ -14,7 +14,7 @@ dependencies:
   mason: ^0.0.1-dev.57
   path: ^1.8.0
   recase: ^4.0.0
-  romantic_common: ^0.0.3
+  romantic_common: ^0.0.4
   universal_io: ^2.0.4
   yaml: ^3.1.0
 

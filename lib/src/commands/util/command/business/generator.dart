@@ -227,9 +227,23 @@ class ClosureVarBrickAdapter {
     // print(closureVarBrick!.vars);
     for (final variable in closureVarBrick!.vars) {
       if (vars.containsKey(variable)) continue;
-      vars.addAll(<String, dynamic>{variable: logger.prompt('$variable: ')});
+      vars.addAll(<String, dynamic>{
+        variable: logger.prompt('$variable: ').boolHandle(variable)
+      });
     }
     return vars;
+  }
+}
+
+/// Switch String to Boolean
+extension BoolHandler on String {
+  /// Switch String to Boolean
+  dynamic boolHandle(String key) {
+    if (key.startsWith('is')) {
+      if (toLowerCase() == 'true') return true;
+      if (toLowerCase() == 'false') return false;
+    }
+    return this;
   }
 }
 
